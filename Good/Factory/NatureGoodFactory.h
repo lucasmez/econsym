@@ -2,9 +2,9 @@
 #define _NATURE_GOOD_FACTORY_H_
 
 #include <string>
-#include <Good/Factory/GoodFactory.h>
+#include <Good/Factory/IGoodFactory.h>
 
-class NatureGoodFactory: public GoodFactory {
+class NatureGoodFactory: public IGoodFactory {
     public:
         NatureGoodFactory() = default;
         virtual ~NatureGoodFactory() = default;

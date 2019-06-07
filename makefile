@@ -18,7 +18,7 @@ OBJ_FILES = EconSym.o \
 GoodsManager.o \
 GoodsHoldings.o \
 GoodRecipe.o \
-GoodFactory.o \
+IGoodFactory.o \
 ProducedGoodFactory.o \
 GoodType.o \
 ProducedGoodType.o
@@ -33,13 +33,13 @@ EconSym: $(OBJ_FILES)
 
 EconSym.o: Good/GoodsManager.h \
 Good/Type/NatureGoodType.h \
-Good/Factory/GoodFactory.h \
+Good/Factory/IGoodFactory.h \
 Good/Factory/NatureGoodFactory.h \
 Good/Collection/IGoodsCollection.h \
 Good/Type/GoodType.h \
 Good/Common.h
 
-GoodsManager.o: Good/Factory/GoodFactory.cpp \
+GoodsManager.o: Good/Factory/IGoodFactory.cpp \
 Good/Type/GoodType.h \
 Good/Common.h
 
@@ -55,15 +55,15 @@ Good/Collection/IGoodsCollection.h \
 Good/Type/GoodType.h \
 Good/Common.h
 
-GoodFactory.o: Good/Factory/GoodFactory.cpp \
-Good/Factory/GoodFactory.h \
+IGoodFactory.o: Good/Factory/IGoodFactory.cpp \
+Good/Factory/IGoodFactory.h \
 Good/Collection/IGoodsCollection.h \
 Good/Type/GoodType.h \
 Good/Common.h
 
 ProducedGoodFactory.o: Good/Factory/ProducedGoodFactory.cpp \
 Good/Factory/ProducedGoodFactory.h \
-Good/Factory/GoodFactory.h \
+Good/Factory/IGoodFactory.h \
 Good/Factory/IProducingFactory.h \
 Good/Collection/IGoodsCollection.h \
 Good/Type/GoodType.h \

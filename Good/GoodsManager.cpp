@@ -29,4 +29,8 @@ GoodsManager::~GoodsManager() {
     for (GoodType* typeP: types) {
         delete typeP;
     }
+
+    for (auto& factory: factories) {
+        delete factory.second;
+    }
 }

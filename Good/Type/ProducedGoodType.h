@@ -12,6 +12,8 @@ class ProducedGoodType: public GoodType, public IProducedGoodType {
         producing_time producingTime;
 
     public:
+        const static std::string typeName;
+
         ProducedGoodType(std::string);
         ProducedGoodType(std::string, const GoodRecipe&);
         ProducedGoodType(std::string, const GoodRecipe&, producing_time);

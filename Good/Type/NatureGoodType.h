@@ -5,9 +5,13 @@
 
 class NatureGoodType: public GoodType {
     public:
+        const static std::string typeName;
+
         NatureGoodType(std::string name): GoodType {name} {};
         virtual ~NatureGoodType() = default;
         
 };
+
+const std::string NatureGoodType::typeName = "naturegoodtype";
 
 #endif // _NATURE_GOOD_TYPE_H_

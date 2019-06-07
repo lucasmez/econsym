@@ -7,20 +7,20 @@
 #include <Good/Collection/IGoodsCollectionMutable.h>
 
 class GoodsHoldings: public IGoodsCollectionMutable {
-    friend class GoodFactory;
+    friend class IGoodFactory;
     
     private:
         std::map<const GoodType*, num_goods> holdings;
 
     protected:
         /**
-         * @note This method is protected because only GoodFactory should be 
+         * @note This method is protected because only IGoodFactory should be 
          * able to remove elements from the collection.
          */
         virtual void add(const GoodType* goodType, num_goods quantity) override;
 
         /**
-         * @note This method is protected because only GoodFactory should be 
+         * @note This method is protected because only IGoodFactory should be 
          * able to remove elements from the collection.
          */
         virtual bool remove(const GoodType*, num_goods) override;

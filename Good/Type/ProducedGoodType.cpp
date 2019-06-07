@@ -1,5 +1,7 @@
 #include "./ProducedGoodType.h"
 
+const std::string ProducedGoodType::typeName = "producedgoodtype";
+
 ProducedGoodType::ProducedGoodType(std::string name, const GoodRecipe& recipe, producing_time time)
     : GoodType{name}, recipe{recipe}, producingTime{time} {}
 

@@ -1,5 +1,6 @@
 #include "./GoodType.h"
 
+const std::string GoodType::typeName = "goodtype";
 good_id GoodType::currentId = 0;
 
 GoodType::GoodType(std::string name): name{name} {

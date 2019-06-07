@@ -9,73 +9,60 @@
 using namespace std;
 
 int main() {
-    GoodsManager goodsManager {};
+    GoodsManager gm {};
     // ActorsManager actorsManager {};
 
     // goodsManager.generateTypes<ConsumerGoodType>(100);
     // goodsManager.generateTypes<ProducerGoodType>(100);
     // goodsManager.generateTypes<NatureGoodType>(100);
 
-    NatureGoodType* wood = goodsManager.createGoodType<NatureGoodType>("wood");
-    NatureGoodType* ore = goodsManager.createGoodType<NatureGoodType>("ore");
+    NatureGoodFactory* natureGoodFactory = new NatureGoodFactory();
+    ProducedGoodFactory* producedGoodFactory = new ProducedGoodFactory();
+    gm.registerFactory<NatureGoodType>(natureGoodFactory);
+    gm.registerFactory<ProducedGoodType>(producedGoodFactory);
 
-    NatureGoodFactory natureGoodFactory = goodsManager.createGoodFactory<NatureGoodFactory>();
-
-    GoodsHoldings myCollection;
-    natureGoodFactory.spawn(ore, 20, myCollection);
-    natureGoodFactory.spawn(wood, 10, myCollection);
-    num_goods woodQty = myCollection.count(wood);
-    std::cout << woodQty << endl;
-
-    //===PRODUCING
-    ProducedGoodType* food = goodsManager.createGoodType<ProducedGoodType>("food");
+    NatureGoodType* wood = gm.createGoodType<NatureGoodType>("wood");
+    NatureGoodType* ore = gm.createGoodType<NatureGoodType>("ore");
+    ProducedGoodType* food = gm.createGoodType<ProducedGoodType>("food");
     food->setRecipe({
        {ore, 3}
     });
 
-    ProducedGoodType* bread = goodsManager.createGoodType<ProducedGoodType>("bread");
+    ProducedGoodType* bread = gm.createGoodType<ProducedGoodType>("bread");
     bread->setRecipe({
         {ore, 23},
         {wood, 5}
     });
+    
 
-    ProducedGoodFactory producingPipeline = goodsManager.createGoodFactory<ProducedGoodFactory>(food);
-    producingPipeline.produce(myCollection);
+    GoodsHoldings myGoods {};    
+    gm.spawnGood<NatureGoodType>(ore, 50, myGoods);
+    gm.spawnGood<NatureGoodType>(wood, 10, myGoods);
+    gm.produceGood<ProducedGoodType>(bread, myGoods);
+    // gm.produceGood<ProducedGoodType>(bread, collection, inProductionColl);
 
-    producingPipeline = goodsManager.createGoodFactory<ProducedGoodFactory>(bread->getId());
-    producingPipeline.produce(myCollection);
+    // // setup actorsmanager
+    // IProducingFactory* producingFactory = gm.getFactory<QuicklyProducedType>();
+    // am.setFactory(producingFactory);
+    // // in actor object
+    // factory->produce(bread, myGoods, myProductionPipeline);
+    
+    // // in goodsmanager
+    // template <Type T>
+    // void spawnGood(Type* type, Coll coll) {
+    //     GoodFactory* factory = getFactory<T>();
+    //     factory->spawn(type, coll);
+    // }
 
-        //NEW WAY================================
-        // setup goodsmanager
-        // gm.registerFactory<NatureGoodType>(natureGoodFactory);
-        // gm.registerFactory<ProducedGoodType>(producedGoodFactory);
-        // gm.registerFactory<QuicklyProducedType>(quicklyProducedFactory);
-        
-        // gm.spawnGood<NatureGoodType>(ore, destCollection)
-        // gm.produceGood<ProducedGoodType>(bread, collection, inProductionColl);
-
-        // // setup actorsmanager
-        // IProducingFactory* producingFactory = gm.getFactory<QuicklyProducedType>();
-        // am.setFactory(producingFactory);
-        // // in actor object
-        // factory->produce(bread, myGoods, myProductionPipeline);
-        
-        // // in goodsmanager
-        // template <Type T>
-        // void spawnGood(Type* type, Coll coll) {
-        //     GoodFactory* factory = getFactory<T>();
-        //     factory->spawn(type, coll);
-        // }
-
-        // template <Type>
-        // void produceGood(Type* type, Coll& coll, Coll& inProd) {
-        //     IProducingFactory* factory = getFactory(Type::name);
-        //     factory->produce(type, coll, inProd);
-        // }
-        //END NEW WAY============================
+    // template <Type>
+    // void produceGood(Type* type, Coll& coll, Coll& inProd) {
+    //     IProducingFactory* factory = getFactory(Type::name);
+    //     factory->produce(type, coll, inProd);
+    // }
 
 
-    std::cout << myCollection << endl;
+    std:: cout << myGoods.count(ore) << endl;
+    std::cout << myGoods << endl;
 
     // square1.populate(natureGoodFactory);
     // square2.populate(natureGoodFactory, 2);

@@ -2,23 +2,8 @@
 #include "./ProducedGoodFactory.h"
 #include <Good/Type/IProducedGoodType.h>
 
-bool ProducedGoodFactory::produce(IGoodsCollectionMutable& fromTo) const {
-    return produce(fromTo, fromTo);
-}
-
 bool ProducedGoodFactory::produce(const IProducedGoodType* goodType, IGoodsCollectionMutable& fromTo) const {
     return produce(goodType, fromTo, fromTo);
-}
-
-bool ProducedGoodFactory::produce(IGoodsCollectionMutable& dest, IGoodsCollectionMutable& source) const {
-    if (!inPipeline) {
-        //TODO Return error code ("[GoodFactory]: No good in pipeline.");
-    }
-
-    const IProducedGoodType* producedGoodType = dynamic_cast<const IProducedGoodType*>(inPipeline);
-    assert(producedGoodType);
-
-    return produce(producedGoodType, dest, source);
 }
 
 bool ProducedGoodFactory::produce(const IProducedGoodType* goodType, IGoodsCollectionMutable& dest, IGoodsCollectionMutable& source) const {

@@ -13,6 +13,8 @@ class GoodType: public IPrintable {
         std::string name;
 
     public:
+        const static std::string typeName;
+
         GoodType(std::string name);
         virtual ~GoodType() = default;
 
