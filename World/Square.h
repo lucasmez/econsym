@@ -1,5 +1,5 @@
 // #include <map>
-// #include "../Goods/GoodType.h"
+// #include "../Goods/IGoodType.h"
 // #include "../Goods/Good.h"
 
 // #ifndef _SQUARE_H_
@@ -7,7 +7,7 @@
 
 // class Square {
 // private:
-//    std::map<GoodType*, unsigned> goods;
+//    std::map<IGoodType*, unsigned> goods;
 
 // public:
 //    Square() = default;

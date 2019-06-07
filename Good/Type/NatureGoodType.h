@@ -1,13 +1,13 @@
 #ifndef _NATURE_GOOD_TYPE_H_
 #define _NATURE_GOOD_TYPE_H_
 
-#include <Good/Type/GoodType.h>
+#include <Good/Type/IGoodType.h>
 
-class NatureGoodType: public GoodType {
+class NatureGoodType: public IGoodType {
     public:
         const static std::string typeName;
 
-        NatureGoodType(std::string name): GoodType {name} {};
+        NatureGoodType(std::string name): IGoodType {name} {};
         virtual ~NatureGoodType() = default;
         
 };

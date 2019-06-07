@@ -2,7 +2,7 @@
 #define _I_GOODS_COLLECTION_H
 
 #include <Common/IPrintable.h>
-#include <Good/Type/GoodType.h>
+#include <Good/Type/IGoodType.h>
 #include <Good/Common.h>
 
 class IGoodsCollection: public IPrintable {
@@ -15,13 +15,13 @@ class IGoodsCollection: public IPrintable {
          * @note   
          * @retval How much of the good the collection contains.
          */
-        virtual num_goods count(const GoodType*) const = 0;
+        virtual num_goods count(const IGoodType*) const = 0;
 
         /**
          * @brief  Determies whether the collection has at least the specified number of the specified good.
-         * @param  GoodType*: good to check
+         * @param  IGoodType*: good to check
          */
-        virtual bool contains(const GoodType*, num_goods) const = 0;
+        virtual bool contains(const IGoodType*, num_goods) const = 0;
 
         /**
          * @brief  Determines whether this collection is a subset of the passed collection.

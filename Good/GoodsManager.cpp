@@ -1,8 +1,8 @@
 #include <algorithm>
 #include "./GoodsManager.h"
 
-GoodType* GoodsManager::getGoodType(good_id id) const {
-    auto found = std::find_if(types.cbegin(), types.cend(), [&id](const GoodType* type){
+IGoodType* GoodsManager::getGoodType(good_id id) const {
+    auto found = std::find_if(types.cbegin(), types.cend(), [&id](const IGoodType* type){
         return type->getId() == id;
     });
     
@@ -13,8 +13,8 @@ GoodType* GoodsManager::getGoodType(good_id id) const {
     }
 }
 
-GoodType* GoodsManager::getGoodType(const std::string& name) const {
-    auto found = std::find_if(types.cbegin(), types.cend(), [&name](const GoodType* type){
+IGoodType* GoodsManager::getGoodType(const std::string& name) const {
+    auto found = std::find_if(types.cbegin(), types.cend(), [&name](const IGoodType* type){
         return name == type->getName();
     });
 
@@ -26,7 +26,7 @@ GoodType* GoodsManager::getGoodType(const std::string& name) const {
 }
 
 GoodsManager::~GoodsManager() {
-    for (GoodType* typeP: types) {
+    for (IGoodType* typeP: types) {
         delete typeP;
     }
 

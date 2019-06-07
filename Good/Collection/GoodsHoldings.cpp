@@ -1,24 +1,24 @@
 #include "./GoodsHoldings.h"
 
-void GoodsHoldings::add(const GoodType* goodType, num_goods quantity) {
+void GoodsHoldings::add(const IGoodType* goodType, num_goods quantity) {
     auto found = holdings.find(goodType);
 
-    // GoodType not present in collection. Add it to collection.
+    // IGoodType not present in collection. Add it to collection.
     if (found == holdings.end()) {
         holdings.insert({goodType, quantity});
 
-    // GoodType already present in collection: increase quantity.
+    // IGoodType already present in collection: increase quantity.
     } else {
         found->second += quantity;
     }
 }
 
-num_goods GoodsHoldings::count(const GoodType* goodType) const {
+num_goods GoodsHoldings::count(const IGoodType* goodType) const {
     auto found = holdings.find(goodType);
     return found == holdings.end() ? 0 : found->second;
 }
 
-bool GoodsHoldings::remove(const GoodType* goodType, num_goods quantity) {
+bool GoodsHoldings::remove(const IGoodType* goodType, num_goods quantity) {
     auto found = holdings.find(goodType);
     
     if (found == holdings.end() || found->second < quantity) {
@@ -29,7 +29,7 @@ bool GoodsHoldings::remove(const GoodType* goodType, num_goods quantity) {
     }
 }
 
-bool GoodsHoldings::transfer(const GoodType* goodType, num_goods quantity, IGoodsCollectionMutable& destination) {
+bool GoodsHoldings::transfer(const IGoodType* goodType, num_goods quantity, IGoodsCollectionMutable& destination) {
     try {
         GoodsHoldings& convertedDest = dynamic_cast<GoodsHoldings&>(destination);
 
@@ -40,6 +40,7 @@ bool GoodsHoldings::transfer(const GoodType* goodType, num_goods quantity, IGood
         }
 
     } catch(std::bad_cast error) {
+        std::cerr << "Implement this..." << std::endl;
         //TODO: return error code
         return false;
     }
@@ -47,7 +48,7 @@ bool GoodsHoldings::transfer(const GoodType* goodType, num_goods quantity, IGood
     return true;
 }
 
-bool GoodsHoldings::contains(const GoodType* goodType, num_goods quantity) const {
+bool GoodsHoldings::contains(const IGoodType* goodType, num_goods quantity) const {
     return count(goodType) >= quantity;
 }
 

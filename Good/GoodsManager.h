@@ -6,12 +6,12 @@
 #include <utility>
 #include <Good/Factory/IGoodFactory.h>
 #include <Good/Factory/IProducingFactory.h>
-#include <Good/Type/GoodType.h>
+#include <Good/Type/IGoodType.h>
 #include <Good/Common.h>
 
 class GoodsManager {
     private:
-        std::vector<GoodType*> types;
+        std::vector<IGoodType*> types;
         std::map<std::string, IGoodFactory*> factories;
 
     public:
@@ -21,13 +21,13 @@ class GoodsManager {
          * @brief  Get a good type that had been previously created, by goodtype id.
          * @retval pointer to good type.
          */
-        GoodType* getGoodType(good_id id) const;
+        IGoodType* getGoodType(good_id id) const;
 
         /**
          * @brief  Get a good type that had been previously created, by goodtype name.
          * @retval pointer to good type.
          */
-        GoodType* getGoodType(const std::string& name) const;
+        IGoodType* getGoodType(const std::string& name) const;
 
         /**
          * @brief  Creates a new good type with given name and push it to "types" list.
@@ -50,6 +50,7 @@ class GoodsManager {
         void registerFactory(IGoodFactory* factory) {
             auto result = factories.insert({ GType::typeName, factory });
             if (result.second == false) {
+                std::cerr << "Implement this..." << std::endl;
                 //TODO return error code for facotry with given name already registered
             }
         }
@@ -88,6 +89,7 @@ class GoodsManager {
             IProducingFactory* factory = dynamic_cast<IProducingFactory*>(getFactory<GType>());
 
             if (!factory) {
+                std::cerr << "Implement this..." << std::endl;
                 //TODO returns error saying regisredter factory is not of tyoe IProducingFactory
             }
 

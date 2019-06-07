@@ -3,12 +3,12 @@
 
 #include <vector>
 #include <string>
-// #include <Good/Type/GoodType.h>
+#include <Good/Type/IGoodType.h>
 #include <Good/Collection/GoodRecipe.h>
-// #include <Good/Common.h>
 
-class IProducedGoodType {
+class IProducedGoodType: public IGoodType {
     public:
+        IProducedGoodType(std::string name): IGoodType {name} {};
         virtual ~IProducedGoodType() {}
         virtual const GoodRecipe getRecipe() const = 0;
         virtual void setRecipe(const GoodRecipe&) = 0;

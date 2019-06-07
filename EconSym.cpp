@@ -95,7 +95,7 @@ int main() {
     //     world.turn();
     // }
 
-    // GoodType* bread = goodsManager.createGoodType<ConsumerGoodType>("bread", {
+    // IGoodType* bread = goodsManager.createGoodType<ConsumerGoodType>("bread", {
     //     { ConsumerGoodType::attributes::longevity, 10 },
     //     { ConsumerGoodType::attributes::weight, 10 }
     //  });

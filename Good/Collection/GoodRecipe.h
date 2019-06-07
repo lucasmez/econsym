@@ -3,10 +3,10 @@
 
 #include <map>
 #include <Good/Common.h>
-#include <Good/Type/GoodType.h>
+#include <Good/Type/IGoodType.h>
 #include <Good/Collection/IGoodsCollection.h>
 
-typedef std::map<const GoodType*, num_goods> Ingredients;
+typedef std::map<const IGoodType*, num_goods> Ingredients;
 
 class GoodRecipe: public IGoodsCollection {
     private:
@@ -18,8 +18,8 @@ class GoodRecipe: public IGoodsCollection {
         virtual ~GoodRecipe() = default;
 
         const Ingredients& getIngredients() const;
-        virtual num_goods count(const GoodType*) const override;
-        virtual bool contains(const GoodType*, num_goods) const override;
+        virtual num_goods count(const IGoodType*) const override;
+        virtual bool contains(const IGoodType*, num_goods) const override;
         virtual bool containedIn(const IGoodsCollection&) const override;
         virtual std::string str() const override;
 };

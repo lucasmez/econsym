@@ -1,7 +1,6 @@
 #ifndef _PRODUCED_GOOD_FACTORY_H
 #define _PRODUCED_GOOD_FACTORY_H
 
-#include <Good/Factory/IGoodFactory.h>
 #include <Good/Factory/IProducingFactory.h>
 #include <Good/Collection/IGoodsCollectionMutable.h>
 

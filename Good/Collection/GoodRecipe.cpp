@@ -7,7 +7,7 @@ const Ingredients& GoodRecipe::getIngredients() const {
     return ingredients;
 }
 
-num_goods GoodRecipe::count(const GoodType* goodType) const {
+num_goods GoodRecipe::count(const IGoodType* goodType) const {
     auto found = ingredients.find(goodType);
     return found == ingredients.end() ? 0 : found->second;
 }
@@ -22,7 +22,7 @@ std::string GoodRecipe::str() const {
     return result;
 }
 
-bool GoodRecipe::contains(const GoodType* goodType, num_goods quantity) const {
+bool GoodRecipe::contains(const IGoodType* goodType, num_goods quantity) const {
     return count(goodType) >= quantity;
 }
 

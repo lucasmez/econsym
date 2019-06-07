@@ -1,11 +1,11 @@
-#ifndef _GOOD_TYPE_H_
-#define _GOOD_TYPE_H_
+#ifndef _I_GOOD_TYPE_H_
+#define _I_GOOD_TYPE_H_
 
 #include <string>
 #include <Common/IPrintable.h>
 #include <Good/Common.h>
 
-class GoodType: public IPrintable {
+class IGoodType: public IPrintable {
     static good_id currentId;
 
     protected:
@@ -15,10 +15,10 @@ class GoodType: public IPrintable {
     public:
         const static std::string typeName;
 
-        GoodType(std::string name);
-        virtual ~GoodType() = default;
+        IGoodType(std::string name);
+        virtual ~IGoodType() = 0;
 
-        virtual bool operator==(const GoodType&) const;
+        virtual bool operator==(const IGoodType&) const;
         std::string getName() const;
         good_id getId() const;
         virtual std::string str() const override;

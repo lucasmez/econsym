@@ -20,7 +20,7 @@ GoodsHoldings.o \
 GoodRecipe.o \
 IGoodFactory.o \
 ProducedGoodFactory.o \
-GoodType.o \
+IGoodType.o \
 ProducedGoodType.o
 
 EconSym: $(OBJ_FILES)
@@ -36,29 +36,29 @@ Good/Type/NatureGoodType.h \
 Good/Factory/IGoodFactory.h \
 Good/Factory/NatureGoodFactory.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 GoodsManager.o: Good/Factory/IGoodFactory.cpp \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 GoodsHoldings.o: Good/Collection/GoodsHoldings.cpp \
 Good/Collection/GoodsHoldings.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 GoodRecipe.o: Good/Collection/GoodRecipe.cpp \
 Good/Collection/GoodRecipe.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 IGoodFactory.o: Good/Factory/IGoodFactory.cpp \
 Good/Factory/IGoodFactory.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 ProducedGoodFactory.o: Good/Factory/ProducedGoodFactory.cpp \
@@ -66,12 +66,12 @@ Good/Factory/ProducedGoodFactory.h \
 Good/Factory/IGoodFactory.h \
 Good/Factory/IProducingFactory.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Type/IProducedGoodType.h \
 Good/Common.h
 
-GoodType.o: Good/Type/GoodType.cpp \
-Good/Type/GoodType.h \
+IGoodType.o: Good/Type/IGoodType.cpp \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 ProducedGoodType.o: Good/Type/ProducedGoodType.cpp \
@@ -79,7 +79,7 @@ Good/Type/ProducedGoodType.h \
 Good/Type/IProducedGoodType.h \
 Good/Collection/GoodRecipe.h \
 Good/Collection/IGoodsCollection.h \
-Good/Type/GoodType.h \
+Good/Type/IGoodType.h \
 Good/Common.h
 
 #=======================================

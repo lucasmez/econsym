@@ -2,14 +2,14 @@
 
 IGoodFactory::~IGoodFactory() {}
 
-void IGoodFactory::spawn(const GoodType* type, IGoodsCollectionMutable& destinationCol) const {
+void IGoodFactory::spawn(const IGoodType* type, IGoodsCollectionMutable& destinationCol) const {
     destinationCol.add(type, 1);
 }
 
-void IGoodFactory::spawn(const GoodType* type, num_goods n, IGoodsCollectionMutable& destinationCol) const {
+void IGoodFactory::spawn(const IGoodType* type, num_goods n, IGoodsCollectionMutable& destinationCol) const {
     destinationCol.add(type, n);
 }
 
-bool IGoodFactory::destroy(const GoodType* goodType, num_goods quantity, IGoodsCollectionMutable& col) const {
+bool IGoodFactory::destroy(const IGoodType* goodType, num_goods quantity, IGoodsCollectionMutable& col) const {
     return col.remove(goodType, quantity);
 }
