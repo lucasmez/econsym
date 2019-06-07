@@ -1,4 +1,3 @@
-#include <algorithm>
 #include "./GoodsManager.h"
 
 IGoodType* GoodsManager::getGoodType(good_id id) const {

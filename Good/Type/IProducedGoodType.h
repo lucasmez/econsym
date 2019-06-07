@@ -13,6 +13,7 @@ class IProducedGoodType: public IGoodType {
         virtual const GoodRecipe getRecipe() const = 0;
         virtual void setRecipe(const GoodRecipe&) = 0;
         virtual void setRecipe(const Ingredients& ingredients) = 0;
+        virtual producing_time getProductionTime() const = 0;
 };
 
 #endif

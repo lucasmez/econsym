@@ -1,9 +1,11 @@
 #ifndef _GOODS_MANAGER_H_
 #define _GOODS_MANAGER_H_
 
-#include <vector>
+#include <set>
 #include <map>
+#include <set>
 #include <utility>
+#include <algorithm>
 #include <Good/Factory/IGoodFactory.h>
 #include <Good/Factory/IProducingFactory.h>
 #include <Good/Type/IGoodType.h>
@@ -11,7 +13,7 @@
 
 class GoodsManager {
     private:
-        std::vector<IGoodType*> types;
+        std::set<IGoodType*> types;
         std::map<std::string, IGoodFactory*> factories;
 
     public:
@@ -30,15 +32,34 @@ class GoodsManager {
         IGoodType* getGoodType(const std::string& name) const;
 
         /**
-         * @brief  Creates a new good type with given name and push it to "types" list.
-         * @param  name: name of good type.
-         * @retval pointer to created good type.
+         * @brief  Adds a new good type to the goodsmanager register. Checks whether names
+         * are repeated. If at least one good type cannot be added, none will.
+         * @param  newTypes: collection of new good types to add. 
+         * @retval true if all goods were added. False if none were added.
          */
-        template <typename GType>
-        GType* createGoodType(std::string name) {
-            GType* newType = new GType {name};
-            types.push_back(newType);
-            return newType;
+        bool addGoodTypes(const std::set<IGoodType*>& newTypes) {
+            // Check whether names are already taken.
+            std::set<std::string> takenNames {};
+
+            std::transform(
+                types.cbegin(),
+                types.cend(),
+                std::inserter(takenNames, takenNames.begin()),
+                [](const IGoodType* type){ 
+                    return type->getName();
+                }
+            );
+
+            for (const IGoodType* newType: newTypes) {
+                const auto found = std::find(takenNames.cbegin(), takenNames.cend(), newType->getName());
+                // Name is taken
+                if (found != takenNames.cend()) {
+                    return false;
+                }
+            }
+
+            types.insert(newTypes.begin(), newTypes.end());
+            return true;
         }
 
         /**

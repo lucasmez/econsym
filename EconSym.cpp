@@ -12,32 +12,41 @@ int main() {
     GoodsManager gm {};
     // ActorsManager actorsManager {};
 
-    // goodsManager.generateTypes<ConsumerGoodType>(100);
-    // goodsManager.generateTypes<ProducerGoodType>(100);
-    // goodsManager.generateTypes<NatureGoodType>(100);
+    // generator.generateTypes<ConsumerGoodType>(100);
+    // generator.generateTypes<ProducerGoodType>(100);
+    // generator.generateTypes<NatureGoodType>(100);
 
     NatureGoodFactory* natureGoodFactory = new NatureGoodFactory();
     ProducedGoodFactory* producedGoodFactory = new ProducedGoodFactory();
     gm.registerFactory<NatureGoodType>(natureGoodFactory);
     gm.registerFactory<ProducedGoodType>(producedGoodFactory);
 
-    NatureGoodType* wood = gm.createGoodType<NatureGoodType>("wood");
-    NatureGoodType* ore = gm.createGoodType<NatureGoodType>("ore");
-    ProducedGoodType* food = gm.createGoodType<ProducedGoodType>("food");
-    food->setRecipe({
-       {ore, 3}
-    });
+    NatureGoodType* wood = new NatureGoodType("wood");
+    NatureGoodType* ore = new NatureGoodType("ore");
+    ProducedGoodType* food = new ProducedGoodType("food", {
+        {{ore, 3}}
+    }, 3);
 
-    ProducedGoodType* bread = gm.createGoodType<ProducedGoodType>("bread");
-    bread->setRecipe({
+    gm.addGoodTypes({wood, ore, food});
+    
+    // NatureGoodType* wood = gm.createGoodType<NatureGoodType>("wood");
+    // NatureGoodType* ore = gm.createGoodType<NatureGoodType>("ore");
+    // ProducedGoodType* food = gm.createGoodType<ProducedGoodType>("food");
+    // food->setRecipe({
+    //    {ore, 3}
+    // });
+
+    ProducedGoodType* bread = new ProducedGoodType("bread", {{
         {ore, 23},
         {wood, 5}
-    });
-    
+    }}, 2);
+    gm.addGoodTypes({bread});
 
     GoodsHoldings myGoods {};    
     gm.spawnGood<NatureGoodType>(ore, 50, myGoods);
     gm.spawnGood<NatureGoodType>(wood, 10, myGoods);
+    cout << myGoods << endl;
+    cout << "producing..." << endl;
     gm.produceGood<ProducedGoodType>(bread, myGoods);
     // gm.produceGood<ProducedGoodType>(bread, collection, inProductionColl);
 

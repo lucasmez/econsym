@@ -8,7 +8,7 @@
 class ProducedGoodType: public IProducedGoodType {
     protected:
         GoodRecipe recipe;
-        producing_time producingTime;
+        producing_time productionTime;
 
     public:
         const static std::string typeName;
@@ -21,6 +21,7 @@ class ProducedGoodType: public IProducedGoodType {
         virtual const GoodRecipe getRecipe() const override;
         virtual void setRecipe(const GoodRecipe& recipe) override;
         virtual void setRecipe(const Ingredients& ingredients);
+        virtual producing_time getProductionTime() const override;
         virtual std::string str() const override;
 };
 

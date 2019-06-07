@@ -21,10 +21,9 @@ bool ProducedGoodFactory::produce(const IProducedGoodType* goodType, IGoodsColle
     }
 
     // Generate the produced good and add it to the destination goods collection
-    // this->spawn(dynamic_cast<const IGoodType*>(goodType), dest);
-    // TimeEmitter::in(goodType->productionTime, [this, goodType, dest](){
+    TimeEmitter::in(goodType->getProductionTime(), [this, goodType, &dest](){
         this->spawn(goodType, dest);
-    // });
+    });
 
     return true;
 }

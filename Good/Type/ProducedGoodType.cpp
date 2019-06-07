@@ -3,7 +3,7 @@
 const std::string ProducedGoodType::typeName = "producedgoodtype";
 
 ProducedGoodType::ProducedGoodType(std::string name, const GoodRecipe& recipe, producing_time time)
-    : IProducedGoodType{name}, recipe{recipe}, producingTime{time} {}
+    : IProducedGoodType{name}, recipe{recipe}, productionTime{time} {}
 
 ProducedGoodType::ProducedGoodType(std::string name, const GoodRecipe& recipe)
     : ProducedGoodType{name, recipe, 0} {}
@@ -26,6 +26,10 @@ void ProducedGoodType::setRecipe(const GoodRecipe& recipe) {
 void ProducedGoodType::setRecipe(const Ingredients& ingredients) {
     GoodRecipe recipe {ingredients};
     setRecipe(recipe);
+}
+
+producing_time ProducedGoodType::getProductionTime() const {
+    return productionTime;
 }
 
 std::string ProducedGoodType::str() const {
