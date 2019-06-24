@@ -20,6 +20,7 @@ int main() {
     ProducedGoodFactory* producedGoodFactory = new ProducedGoodFactory();
     gm.registerFactory<NatureGoodType>(natureGoodFactory);
     gm.registerFactory<ProducedGoodType>(producedGoodFactory);
+    gm.registerFactory<ProducedGoodType>(producedGoodFactory);
 
     NatureGoodType* wood = new NatureGoodType("wood");
     NatureGoodType* ore = new NatureGoodType("ore");
@@ -28,6 +29,7 @@ int main() {
     }, 3);
 
     gm.addGoodTypes({wood, ore, food});
+    gm.addGoodTypes({wood});
     
     // NatureGoodType* wood = gm.createGoodType<NatureGoodType>("wood");
     // NatureGoodType* ore = gm.createGoodType<NatureGoodType>("ore");
@@ -81,8 +83,7 @@ int main() {
     // actorsManager.generateActors();
 
     // World myWorld = 
-    // myWorld
-    //     .builder()
+    // World::create()
     //     .settings(worldSettings)
     //     .setGoodsManager(goodsManager)
     //     .setActorsManager(actorsManager)
