@@ -4,7 +4,8 @@
 #include <cmath>
 #include <climits>
 #include <vector>
-#include <World/WorldBuilder.h>
+// #include <World/WorldBuilder.h>
+#include <World/Map/Map.h>
 #include <Good/GoodsManager.h>
 
 class World {
@@ -14,7 +15,7 @@ class World {
     public:
         World(size_t width, size_t height, GoodsManager* gm);
 
-        static WorldBuilder create();
+        // static WorldBuilder create();
 };
 
 #endif

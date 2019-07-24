@@ -1,7 +1,8 @@
 #ifndef _SQUARE_H_
 #define _SQUARE_H_
 
-#include <Common/Object/Object.h>
+#include <Object/Object.h>
+#include <Object/Location/Location2D.h>
 #include <Good/Collection/GoodsHoldings.h>
 
 class Square: public Object {
@@ -9,7 +10,8 @@ class Square: public Object {
         GoodsHoldings goods;
 
     public:
-
+        Square() = default;
+        Square(size_t x, size_t y): Object(x, y) {}
 };
 
 #endif

@@ -5,7 +5,7 @@
 # Compiler Variables
 CXX = g++
 CXXFLAGS = -Wall -g --std=c++14 -I ./
-VPATH=Good:Good/Factory:Good/Type:Good/Collection
+VPATH=Good:Good/Factory:Good/Type:Good/Collection:Common:Object:Object/Location:World
 
 # Dependency Graph Variables
 CIRCLE2DOT_PATH =../tools/circle2dot/circletodot.pl
@@ -21,7 +21,12 @@ GoodRecipe.o \
 IGoodFactory.o \
 ProducedGoodFactory.o \
 IGoodType.o \
-ProducedGoodType.o
+ProducedGoodType.o \
+Object.o \
+Location2D.o \
+World.o \
+WorldBuilder.o \
+
 
 EconSym: $(OBJ_FILES)
 	$(CXX) $(CXXFLAGS) -o EconSym $(OBJ_FILES)
@@ -81,6 +86,18 @@ Good/Collection/GoodRecipe.h \
 Good/Collection/IGoodsCollection.h \
 Good/Type/IGoodType.h \
 Good/Common.h
+
+Object.o: Object/Object.cpp \
+Object/Object.h
+
+Location2D.o: Object/Location/Location2D.cpp \
+Object/Location/Location2D.h
+
+World.o: World/World.cpp \
+World/World.h
+
+WorldBuilder.o: World/WorldBuilder.cpp \
+World/WorldBuilder.h
 
 #=======================================
 # MISC. COMMANDS

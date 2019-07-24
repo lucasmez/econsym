@@ -5,16 +5,12 @@
 #include <Good/Factory/NatureGoodFactory.h>
 #include <Good/Factory/ProducedGoodFactory.h>
 #include <Good/Collection/GoodsHoldings.h>
+#include <World/Map/Map.h>
 
 using namespace std;
 
 int main() {
     GoodsManager gm {};
-    // ActorsManager actorsManager {};
-
-    // generator.generateTypes<ConsumerGoodType>(100);
-    // generator.generateTypes<ProducerGoodType>(100);
-    // generator.generateTypes<NatureGoodType>(100);
 
     NatureGoodFactory* natureGoodFactory = new NatureGoodFactory();
     ProducedGoodFactory* producedGoodFactory = new ProducedGoodFactory();
@@ -30,13 +26,6 @@ int main() {
 
     gm.addGoodTypes({wood, ore, food});
     gm.addGoodTypes({wood});
-    
-    // NatureGoodType* wood = gm.createGoodType<NatureGoodType>("wood");
-    // NatureGoodType* ore = gm.createGoodType<NatureGoodType>("ore");
-    // ProducedGoodType* food = gm.createGoodType<ProducedGoodType>("food");
-    // food->setRecipe({
-    //    {ore, 3}
-    // });
 
     ProducedGoodType* bread = new ProducedGoodType("bread", {{
         {ore, 23},
@@ -50,30 +39,25 @@ int main() {
     cout << myGoods << endl;
     cout << "producing..." << endl;
     gm.produceGood<ProducedGoodType>(bread, myGoods);
-    // gm.produceGood<ProducedGoodType>(bread, collection, inProductionColl);
-
-    // // setup actorsmanager
-    // IProducingFactory* producingFactory = gm.getFactory<QuicklyProducedType>();
-    // am.setFactory(producingFactory);
-    // // in actor object
-    // factory->produce(bread, myGoods, myProductionPipeline);
-    
-    // // in goodsmanager
-    // template <Type T>
-    // void spawnGood(Type* type, Coll coll) {
-    //     GoodFactory* factory = getFactory<T>();
-    //     factory->spawn(type, coll);
-    // }
-
-    // template <Type>
-    // void produceGood(Type* type, Coll& coll, Coll& inProd) {
-    //     IProducingFactory* factory = getFactory(Type::name);
-    //     factory->produce(type, coll, inProd);
-    // }
-
 
     std:: cout << myGoods.count(ore) << endl;
     std::cout << myGoods << endl;
+
+    Map myMap {10, 10};
+    for (auto& v: myMap.grid) {
+        cout << endl;
+        for (auto& w: v) {
+            cout << w.getLocation().getPosition().x << ",";
+            cout << w.getLocation().getPosition().y << " ";
+        }
+    }
+
+    auto iter = myMap.spiral_begin(4, 4);
+    while (iter != myMap.spiral_end()) {
+        cout << iter->getLocation().getPosition().x << ",";
+        cout << iter->getLocation().getPosition().y << endl;
+        iter++;
+    }
 
     // square1.populate(natureGoodFactory);
     // square2.populate(natureGoodFactory, 2);

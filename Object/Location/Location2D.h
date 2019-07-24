@@ -1,7 +1,7 @@
 #ifndef LOCATION_2D_H
 #define LOCATION_2D_H
 
-#include <Common/Location/ILocation.h>
+#include <Object/Location/ILocation.h>
 
 /**
  * @note   Check for overflow when calculating distance.
@@ -16,8 +16,11 @@ class Location2D: public ILocation {
         Position2D position;
         
     public:
-        virtual size_t getDistance(const ILocation&) const override;
+        Location2D() = default;
+        Location2D(size_t x, size_t y);
 
+        virtual size_t getDistance(const ILocation&) const override;
+        Position2D getPosition() const;
 };
 
 #endif

@@ -2,14 +2,17 @@
 #define _OBJECT_H_
 
 #include <cstddef>
-#include <Common/Location/Location2D.h>
+#include <Object/Location/Location2D.h>
 
 class Object {
     protected:
         Location2D location;
 
     public:
-        virtual const ILocation& getLocation() const;
+        Object() = default;
+        Object(size_t x, size_t y);
+
+        virtual const Location2D& getLocation() const;
         virtual size_t getEuclideanDistance(const Object&) const;
 };
 
